@@ -60,8 +60,12 @@ export type AboutContent = {
   body: string;
   sinceLabel?: string;
   sinceYear?: string;
+  /** بداية العدّاد. اتركه فارغاً ليظهر الرقم ثابتاً بلا عدّ. */
+  sinceFrom?: number;
   portrait?: Media;
   values?: string[];
+  /** عنوان قسم الكروت المتراكمة الذي يعرض القيم. */
+  valuesHeading?: string;
   ctaLabel?: string;
   ctaHref?: string;
 };

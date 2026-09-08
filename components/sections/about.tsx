@@ -3,10 +3,11 @@
 import { CoverImage } from "@/components/media/cover-image";
 import Link from "next/link";
 import { ArrowUpLeft } from "lucide-react";
+import { CountUp } from "@/components/motion/count-up";
 import { SplitText } from "@/components/motion/split-text";
 import { MediaReveal } from "@/components/motion/media-reveal";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
-import { Label, Section, Shell } from "@/components/sections/section";
+import { Reveal } from "@/components/motion/reveal";
+import { Section, Shell } from "@/components/sections/section";
 import type { AboutContent, SectionTheme } from "@/lib/template";
 
 export function About({
@@ -25,7 +26,11 @@ export function About({
               {content.sinceLabel ?? "أعمل منذ"}
             </p>
             <p className="ltr-isolate text-num-xl font-medium text-brand">
-              {content.sinceYear}
+              {content.sinceFrom ? (
+                <CountUp from={content.sinceFrom} to={Number(content.sinceYear)} />
+              ) : (
+                content.sinceYear
+              )}
             </p>
           </Reveal>
         )}
@@ -52,12 +57,20 @@ export function About({
               <Reveal>
                 <Link
                   href={content.ctaHref}
-                  className="group inline-flex items-center gap-3 font-heavy text-heavy-s text-on-surface"
+                  className="group relative inline-flex items-center gap-4 overflow-hidden border border-on-surface px-6 py-3.5 font-heavy text-heavy-s text-on-surface"
                 >
-                  <span className="grid size-10 place-items-center rounded-pill border border-rule transition-colors group-hover:bg-brand group-hover:text-black">
-                    <ArrowUpLeft className="size-4" aria-hidden />
+                  {/* تعبئة تزحف من جهة بداية السطر — تنقلب مع الاتجاه تلقائياً */}
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 origin-[right] scale-x-0 bg-on-surface transition-transform duration-500 ease-out group-hover:scale-x-100 ltr:origin-left"
+                  />
+                  <span className="relative transition-colors group-hover:text-surface">
+                    {content.ctaLabel}
                   </span>
-                  {content.ctaLabel}
+                  <ArrowUpLeft
+                    className="relative size-4 transition-all duration-300 group-hover:-translate-y-1 group-hover:text-surface"
+                    aria-hidden
+                  />
                 </Link>
               </Reveal>
             )}
@@ -73,20 +86,6 @@ export function About({
           )}
         </div>
 
-        {content.values && content.values.length > 0 && (
-          <div className="flex flex-col gap-rhythm border-t border-rule pt-rhythm">
-            <Label>ما الذي ستجده في عملي</Label>
-            <RevealGroup className="grid gap-gap sm:grid-cols-2 lg:grid-cols-4">
-              {content.values.map((value) => (
-                <RevealItem key={value}>
-                  <p className="font-heavy text-heavy-m text-on-surface">
-                    {value}
-                  </p>
-                </RevealItem>
-              ))}
-            </RevealGroup>
-          </div>
-        )}
       </Shell>
     </Section>
   );

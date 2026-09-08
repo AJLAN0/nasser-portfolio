@@ -10,6 +10,7 @@ export { Hero } from "./hero";
 export { About } from "./about";
 export { Projects, ProjectCard } from "./projects";
 export { Services } from "./services";
+export { StackedCards } from "./stacked-cards";
 export { Testimonials } from "./testimonials";
 export { Contact } from "./contact";
 export { SiteFooter } from "./site-footer";

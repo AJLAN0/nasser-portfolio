@@ -5,6 +5,7 @@ import {
   Hero,
   Projects,
   Services,
+  StackedCards,
   SiteFooter,
   Testimonials,
 } from "@/components/sections";
@@ -25,6 +26,12 @@ export default function NasserTemplatePage() {
       <main>
         <Hero content={data.hero} />
         <About content={data.about} />
+        {data.about.values && data.about.valuesHeading && (
+          <StackedCards
+            heading={data.about.valuesHeading}
+            items={data.about.values}
+          />
+        )}
         <Projects heading="اعمالي" projects={data.projects} basePath="/t/nasser/albums" />
         <Services heading="خدماتي" items={data.services} />
         <Testimonials heading="آراء العملاء" items={data.testimonials} />

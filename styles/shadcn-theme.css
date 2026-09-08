@@ -1,0 +1,111 @@
+/* ==========================================================================
+   SHADCN THEME BRIDGE
+   يربط توكنز shadcn/ui الدلالية بنظام تصميم القالب في tokens.css.
+   الفائدة: أي مكوّن shadcn (Button, Input, Dialog…) يرث هوية القالب فوراً
+   بدون تجاوزات، وتبديل القالب يبدّل مظهر المكوّنات معه.
+
+   القالب داكن افتراضياً، فالقيم الفاتحة هنا هي المقلوبة (‎.light‎)، لا العكس.
+   ========================================================================== */
+
+:root {
+  --background: var(--color-black);
+  --foreground: var(--color-cream);
+
+  --card: var(--color-ink-2);
+  --card-foreground: var(--color-cream);
+  --popover: var(--color-ink);
+  --popover-foreground: var(--color-cream);
+
+  --primary: var(--color-blue);
+  --primary-foreground: var(--color-black);
+  --secondary: var(--color-ink-2);
+  --secondary-foreground: var(--color-cream);
+
+  --muted: var(--color-ink-2);
+  --muted-foreground: var(--color-cream-dim);
+  --accent: var(--color-orange);
+  --accent-foreground: var(--color-black);
+
+  --destructive: var(--color-orange);
+  --border: var(--color-cream-faint);
+  --input: var(--color-cream-faint);
+  --ring: var(--color-blue);
+
+  --radius: 0px; /* حواف حادة — يطابق قرار الصور في tokens.css */
+
+  --chart-1: var(--color-blue);
+  --chart-2: var(--color-orange);
+  --chart-3: var(--color-cream);
+  --chart-4: var(--color-ink-3);
+  --chart-5: var(--color-fog);
+
+  --sidebar: var(--color-ink);
+  --sidebar-foreground: var(--color-cream);
+  --sidebar-primary: var(--color-blue);
+  --sidebar-primary-foreground: var(--color-black);
+  --sidebar-accent: var(--color-ink-2);
+  --sidebar-accent-foreground: var(--color-cream);
+  --sidebar-border: var(--color-cream-faint);
+  --sidebar-ring: var(--color-blue);
+}
+
+/* أقسام فاتحة: مكوّنات shadcn داخلها تنقلب معها تلقائياً */
+[data-theme="light"],
+[data-theme="fog"] {
+  --background: var(--tpl-surface);
+  --foreground: var(--color-black);
+  --card: var(--tpl-surface);
+  --card-foreground: var(--color-black);
+  --popover: var(--tpl-surface);
+  --popover-foreground: var(--color-black);
+  --primary: var(--color-black);
+  --primary-foreground: var(--tpl-surface);
+  --secondary: rgb(0 0 0 / 6%);
+  --secondary-foreground: var(--color-black);
+  --muted: rgb(0 0 0 / 6%);
+  --muted-foreground: #14141499;
+  --border: #14141433;
+  --input: #14141433;
+  --ring: var(--color-black);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius-panel);
+}

@@ -43,10 +43,21 @@ export default defineConfig(async () => {
   // Wrangler snapshots its log path while the Cloudflare plugin is imported.
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
+  // Base UI (shadcn/ui's primitive layer) must not be pre-bundled: the optimizer
+  // gives it its own React copy, which is null inside the RSC/SSR runtime and
+  // throws "Cannot read properties of null (reading 'useContext')" on render.
+  const sharedOptimizeDeps = { exclude: ["@base-ui/react"] };
+
   return {
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,
+    optimizeDeps: sharedOptimizeDeps,
+    environments: {
+      ssr: { optimizeDeps: sharedOptimizeDeps },
+      rsc: { optimizeDeps: sharedOptimizeDeps },
+      client: { optimizeDeps: sharedOptimizeDeps },
+    },
     plugins: [
       vinext(),
       sites(),

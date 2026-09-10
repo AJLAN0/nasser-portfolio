@@ -73,10 +73,15 @@ export function Marquee({
   });
 
   return (
-    <div className={`overflow-hidden ${className ?? ""}`}>
+    // الاتجاه مثبّت على الحاوية لا على المسار: عنصر بعرض `max-content` داخل
+    // حاوية RTL يلتصق بحافتها اليمنى ويفيض يساراً، فتبدأ إحداثيته من قيمة
+    // سالبة كبيرة بينما حساب اللف يفترض بدايةً من الصفر — فتظهر فجوة فارغة.
+    // تثبيت الحاوية على ltr يجعل نقطة الصفر معروفة، وكل نسخة تعود rtl حتى
+    // يُرسم النص العربي صحيحاً.
+    <div dir="ltr" className={`overflow-hidden ${className ?? ""}`}>
       <div ref={trackRef} className="flex w-max will-change-transform">
         {Array.from({ length: copies }, (_, i) => (
-          <div key={i} className="flex shrink-0" aria-hidden={i > 0}>
+          <div key={i} dir="rtl" className="flex shrink-0" aria-hidden={i > 0}>
             {children}
           </div>
         ))}

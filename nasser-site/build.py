@@ -29,20 +29,26 @@ SITE = {
     "credit_url":  "https://linktr.ee/ajlanms",
 }
 
-IMG = "https://framerusercontent.com/images/"
+# الصور محلية بالكامل — لا اعتماد على استضافة خارجية.
+# مصغّرة إلى 2000px وجودة 82 (23MB -> 2MB).
+# نطاق الموقع بعد النشر — مطلوب لمعاينات المشاركة (og:image لا تقبل مساراً
+# نسبياً). غيّره إلى نطاقك الحقيقي قبل النشر.
+SITE_URL = "https://nasseralhanaya.com"
+
+IMG = "assets/img/"
 M = {
-    "logo":      IMG + "2xJVqBsDkDAptRxNuPw3V4RenhQ.png",
-    "hero":      IMG + "2hSacfT3GMI1FYyt113oYjwZVc.jpg",
-    "hero_alt":  IMG + "9fI1nHpZoFzBDhAJrsUR510kK8U.jpg",
-    "about":     IMG + "k94JIGnvS8hHUkuyiCQYqPs89M.jpg",
-    "events":    IMG + "LjCZ6ouw3z06CzTPfqewLTqdaM.jpg",
-    "weddings":  IMG + "mpWVbhhz0LdOIdRdwnwPsLorCQ.jpg",
-    "products":  IMG + "cJJvqHI5SN7so2GHqfT3d08lPtE.jpg",
-    "portraits": IMG + "8VFMv25r8DnC8Hvu98YI2R1XM.jpg",
-    "g1":        IMG + "lFp13WvxcwC071BpcwwqHl8QfE.jpg",
-    "g2":        IMG + "tJSC3gi0kjJzn1uALBie3bPjI.jpg",
-    "g3":        IMG + "EIxKDOW8AyTsYsddruIitlrqUI.jpg",
-    "g4":        IMG + "6n90jXAD2Hh2jcuoyhBi7rmLI4.jpg",
+    "logo":        IMG + "logo.png",
+    "hero":        IMG + "hero.jpg",
+    "hero_alt":    IMG + "hero_alt.jpg",
+    "about":       IMG + "about.jpg",
+    "events":      IMG + "events.jpg",
+    "weddings":    IMG + "weddings.jpg",
+    "products":    IMG + "products.jpg",
+    "portraits":   IMG + "portraits.jpg",
+    "g1":          IMG + "g1.jpg",
+    "g2":          IMG + "g2.jpg",
+    "g3":          IMG + "g3.jpg",
+    "g4":          IMG + "g4.jpg",
 }
 
 CATS = [
@@ -89,7 +95,7 @@ def head(title, desc, page):
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="{M['hero']}">
+<meta property="og:image" content="{SITE_URL}/{M['hero']}">
 <meta property="og:type" content="website">
 <script>document.documentElement.classList.add('js');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">

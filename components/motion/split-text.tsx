@@ -42,11 +42,8 @@ export function SplitText({
     },
   };
 
-  // الإزاحة بوحدة em لا بنسبة مئوية: النسبة تُحسب من ارتفاع السطر، فتتغيّر
-  // مسافة الكشف بين عنوان بارتفاع سطر 0.8 وآخر 1.6. الـ em مرتبطة بحجم الخط
-  // فيبقى الإحساس واحداً عبر كل الأحجام.
   const unit = {
-    hidden: reduced ? { y: 0, rotate: 0, opacity: 1 } : { y: "1.1em", rotate: 1.2, opacity: 0 },
+    hidden: reduced ? { y: 0, rotate: 0, opacity: 1 } : { y: "110%", rotate: 1.2, opacity: 0 },
     show: {
       y: 0,
       rotate: 0,
@@ -70,14 +67,7 @@ export function SplitText({
         // النسخ وفي قارئ الشاشة، ويأخذ الفراغ عرضه الطبيعي من الخط.
         <span key={i}> </span>
       ) : (
-        // القناع أطول من صندوق السطر عمداً: العناوين تستخدم ارتفاع سطر 0.8،
-        // والحروف العربية (صعود اللام، نزول الياء، الحركات) تتجاوزه فتُقصّ
-        // نهائياً. الحشو يوسّع منطقة القص، والهامش السالب يلغي أثره على
-        // التخطيط فلا يتحرك شيء.
-        <span
-          key={i}
-          className="inline-block overflow-hidden align-top py-[0.3em] -my-[0.3em]"
-        >
+        <span key={i} className="inline-block overflow-hidden align-top">
           <motion.span className="inline-block will-change-transform" variants={unit}>
             {token}
           </motion.span>

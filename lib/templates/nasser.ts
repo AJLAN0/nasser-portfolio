@@ -38,11 +38,9 @@ export const nasserTemplate: TemplateData = {
     body: "مصور فوتوغرافي من 2018 محب للأضاءة، اولويتي دائماً اخراج صوره تحكي قصة.",
     sinceLabel: "اعمل منذ",
     sinceYear: "2018",
-    sinceFrom: 2000,
     ctaLabel: "اعرف عني اكثر",
     ctaHref: "/about",
-    valuesHeading: "وش راح تحصل فيني",
-    values: ["الرؤية الإبداعية", "الاحترافية", "شغوف", "المرونة"],
+    values: ["الرؤية الإبداعية", "الاحترافية", "الشغف", "المرونة"],
     portrait: {
       src: IMG + "k94JIGnvS8hHUkuyiCQYqPs89M.jpg",
       alt: "ناصر الحنايا أثناء التصوير",

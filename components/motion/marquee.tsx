@@ -56,26 +56,7 @@ export function Marquee({
     });
 
     observer.observe(viewport);
-
-    // إعادة قياس بعد تحميل الخطوط — أساسي مع الخطوط العربية المخصّصة: القياس
-    // الأول يحدث على الخط الاحتياطي، وعرض النص يتغيّر كثيراً عند وصول الخط
-    // الحقيقي، فتظهر فجوة في الحلقة أو تتضاعف النسخ بلا داع.
-    let alive = true;
-    document.fonts?.ready.then(() => {
-      if (!alive) return;
-      const unit = unitWidth(track);
-      if (unit <= 0) return;
-      const needed = Math.min(
-        12,
-        Math.ceil((viewport.offsetWidth * 2) / unit) + 1,
-      );
-      setCopies((prev) => (needed > prev ? needed : prev));
-    });
-
-    return () => {
-      alive = false;
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, [reverse]);
 
   useAnimationFrame((_, delta) => {

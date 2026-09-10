@@ -1,0 +1,81 @@
+/* ==========================================================================
+   BASE — إعادة ضبط وبدائيات عامة
+   خصائص منطقية فقط (inline/block) حتى ينقلب التخطيط في LTR بلا تعديل.
+   ========================================================================== */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  html {
+    background: var(--color-black);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-heavy);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea {
+    color: inherit;
+    font: inherit;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 55%, transparent);
+  }
+
+  ::selection {
+    background: var(--color-blue);
+    color: var(--color-black);
+  }
+
+  /* الأقسام تحمل لونها من الدور الدلالي، فيكفي data-theme لقلبها */
+  [data-theme] {
+    background: var(--tpl-surface);
+    color: var(--tpl-fg);
+  }
+}
+
+@layer utilities {
+  /* الأرقام واللاتيني داخل نص عربي: خط لاتيني واتجاه معزول
+     حتى لا تنقلب علامة + أو @ */
+  .ltr-isolate {
+    direction: ltr;
+    unicode-bidi: isolate;
+    display: inline-block;
+    font-family: var(--font-latin);
+  }
+
+  .sr-only {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+}

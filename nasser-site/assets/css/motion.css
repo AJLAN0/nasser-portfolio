@@ -8,7 +8,12 @@
 .js [data-reveal]{ --i:0; }
 
 /* 1) كشف النص عبر قناع: كل سطر/كلمة داخل حاوية overflow:hidden */
-.line{ display:block; overflow:hidden; }
+/* القناع أطول من صندوق السطر عمداً: العناوين تستخدم ارتفاع سطر 0.8، والحروف
+   العربية (صعود اللام، نزول الياء، الحركات) تتجاوزه فتُقصّ نهائياً — قياساً:
+   «اعمالي» حبرها 139px والقناع 86px، أي ٥٣px مقصوصة. الحشو يوسّع منطقة القص
+   والهامش السالب يلغي أثره على التخطيط فلا يتحرك شيء. */
+.line{ display:block; overflow:hidden;
+       padding-block:.3em; margin-block:-.3em; }
 .line__inner,
 .word__inner{
   display:inline-block; will-change:transform;
@@ -26,7 +31,8 @@
 .line__inner.is-in,
 .word__inner.is-in{ transform:translateY(0) rotate(0); opacity:1; }
 
-.word{ display:inline-block; overflow:hidden; vertical-align:top; }
+.word{ display:inline-block; overflow:hidden; vertical-align:top;
+        padding-block:.3em; margin-block:-.3em; }
 .word--space{ inline-size:.28em; }
 
 /* تتابع الكلمات أسرع من تتابع الأسطر */
